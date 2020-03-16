@@ -17,6 +17,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         mDataset = myDataset;
     }
 
+    public void swapDataSet(String[] newData) {
+
+        this.mDataset = newData;
+
+        //now, tell the adapter about the update
+        notifyDataSetChanged();
+
+    }
     // Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
