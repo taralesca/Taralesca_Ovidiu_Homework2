@@ -16,14 +16,14 @@ import com.example.taralesca_ovidiu_homework2.model.User;
 import com.example.taralesca_ovidiu_homework2.util.DeleteUser;
 import com.example.taralesca_ovidiu_homework2.util.GetAllUsers;
 import com.example.taralesca_ovidiu_homework2.util.InsertUser;
-import com.example.taralesca_ovidiu_homework2.util.MyAdapter;
+import com.example.taralesca_ovidiu_homework2.util.RVAdapter;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MyAdapter mAdapter = new MyAdapter(new String[]{});
+    private RVAdapter mAdapter = new RVAdapter(new String[]{});
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -97,20 +97,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayToast(String s) {
-        Toast.makeText(getApplicationContext(), s,
-                Toast.LENGTH_LONG).show();
+    private void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
-    private Boolean attemptUserDelete(String firstName, String lastName) throws ExecutionException, InterruptedException {
+    private Boolean attemptUserDelete(String firstName, String lastName)
+            throws ExecutionException, InterruptedException {
+
         return new DeleteUser(getApplicationContext(), firstName, lastName).execute().get();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void updateRecyclerView() {
         try {
-            List<User> users = new GetAllUsers(getApplicationContext()).execute().get();
-            mAdapter.swapDataSet((users.stream().map(user -> user.getFirstName() + user.getLastName()).toArray(String[]::new)));
+            final List<User> users = new GetAllUsers(getApplicationContext()).execute().get();
+            mAdapter.swapDataSet(
+                    users.stream()
+                            .map(user -> user.getFirstName()
+                                    + " " + user.getLastName()
+                                    + ". Marked: " + user.getMark())
+                            .toArray(String[]::new)
+            );
 
         } catch (ExecutionException | InterruptedException e) {
             displayToast("User list can't be displayed.");
