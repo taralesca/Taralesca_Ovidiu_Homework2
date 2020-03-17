@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:hint="First and Last name"
+        android:hint="@string/first_and_last_name"
         android:inputType="text" />
 
     <EditText
         android:id="@+id/mark_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mark"
+        android:hint="@string/mark"
         android:inputType="number" />
 
     <LinearLayout
@@ -32,13 +32,13 @@
             android:id="@+id/add_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add user" />
+            android:text="@string/add_user" />
 
         <Button
             android:id="@+id/remove_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remove user" />
+            android:text="@string/remove_user" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

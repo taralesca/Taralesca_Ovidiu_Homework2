@@ -53,16 +53,16 @@ public class MainActivity extends AppCompatActivity {
         final String[] names = nameField.getText().toString().split(" ");
 
         if (names.length != 2) {
-            displayToast("Please input first name and last name correctly!");
+            displayToast(getString(R.string.invalid_name));
         } else {
             try {
                 final String firstName = names[0];
                 final String lastName = names[1];
                 if (!attemptUserDelete(firstName, lastName)) {
-                    displayToast("User not found!");
+                    displayToast(getString(R.string.user_not_found));
                 }
             } catch (ExecutionException | InterruptedException e) {
-                displayToast("An error has been encountered!");
+                displayToast(getString(R.string.internal_error));
             }
             updateRecyclerView();
         }
@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             mark = Integer.valueOf(markField.getText().toString());
             if (mark > 10 || mark < 1) {
-                throw new NumberFormatException("Mark is invalid.");
+                throw new NumberFormatException(getString(R.string.invalid_mark));
             }
         } catch (NumberFormatException e) {
-            displayToast("Mark is invalid.");
+            displayToast(getString(R.string.invalid_mark));
             return;
         }
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         if (!namesField.isEmpty()) {
             final String[] names = namesField.split(" ");
             if (names.length != 2) {
-                displayToast("Please input first name, last name and mark correctly!");
+                displayToast(getString(R.string.invalid_inputs));
                 return;
             }
             final String firstName = names[0];
@@ -115,12 +115,12 @@ public class MainActivity extends AppCompatActivity {
                     users.stream()
                             .map(user -> user.getFirstName()
                                     + " " + user.getLastName()
-                                    + ". Marked: " + user.getMark())
+                                    + ": " + user.getMark())
                             .toArray(String[]::new)
             );
 
         } catch (ExecutionException | InterruptedException e) {
-            displayToast("User list can't be displayed.");
+            displayToast(getString(R.string.user_list_problem));
         }
     }
 

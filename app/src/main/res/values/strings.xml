@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Taralesca_Ovidiu_Homework2</string>
+    <string name="first_and_last_name">First and Last name</string>
+    <string name="mark">Mark</string>
+    <string name="add_user">Add user</string>
+    <string name="remove_user">Remove user</string>
+    <string name="invalid_name">Please input first name and last name correctly!</string>
+    <string name="user_not_found">User not found!</string>
+    <string name="internal_error">An error has been encountered!</string>
+    <string name="invalid_mark">Mark is invalid.</string>
+    <string name="invalid_inputs">Please input first name, last name and mark correctly!</string>
+    <string name="user_list_problem">User list can\'t be displayed.</string>
 </resources>
